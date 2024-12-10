@@ -3,9 +3,16 @@ const empleadoCtrl={};
 
 //CREATE
 empleadoCtrl.createEmpleado = async(req,res) =>{
-    const body = req.body;
-    const respuesta = await ModelEmpleado.create (body)
-    res.send(respuesta)
+    try { 
+        const body = req.body; 
+        if (!body.name || !body.position || !body.office || !body.salary) { 
+            return res.status(400).send("Todos los campos son obligatorios"); 
+        } 
+        const respuesta = await ModelEmpleado.create(body); 
+        res.status(201).send(respuesta); 
+    } catch (error) { console.error("Error al crear el empleado:", error.message); 
+        res.status(500).send("Error Interno del Servidor"); 
+    }
 }
 
 
