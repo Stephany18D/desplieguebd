@@ -1,8 +1,7 @@
 const mongoose = require('mongoose');
-
 const connectDB = async () => {
     const uri = process.env.MONGODB_URL;
-    console.log("MONGODB_URL:", uri); // Verifica que la variable esté definida
+    console.log("MONGODB_URL:", uri);
     
     if (!uri) {
         console.error("MONGODB_URL no está definida.");
